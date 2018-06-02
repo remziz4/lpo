@@ -7,4 +7,7 @@ CREATE TABLE `level_plus_one`.`user` (
   `last_login` DATETIME NULL,
   `registration_date` DATETIME NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE);
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC));
+  
+ALTER TABLE level_plus_one.user
+  AUTO_INCREMENT=100;
