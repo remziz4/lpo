@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the session database table.
+ * The persistent class for the main database table.
  * 
  */
 @Entity
@@ -17,38 +17,39 @@ public class Main implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="main_id")
 	private int mainId;
-	
-	//bi-directional many-to-one association to User
+
+	private String character;
+
+	//bi-directional many-to-one association to GameInfo
 	@ManyToOne
 	@JoinColumn(name="game_id")
 	private GameInfo gameInfo;
-	
-	private String character;
+
+	public Main() {
+	}
 
 	public int getMainId() {
-		return mainId;
+		return this.mainId;
 	}
 
 	public void setMainId(int mainId) {
 		this.mainId = mainId;
 	}
 
-	public GameInfo getGameInfo() {
-		return gameInfo;
-	}
-
-	public void setGameInfo(GameInfo gameInfo) {
-		this.gameInfo = gameInfo;
-	}
-
 	public String getCharacter() {
-		return character;
+		return this.character;
 	}
 
 	public void setCharacter(String character) {
 		this.character = character;
 	}
 
+	public GameInfo getGameInfo() {
+		return this.gameInfo;
+	}
 
+	public void setGameInfo(GameInfo gameInfo) {
+		this.gameInfo = gameInfo;
+	}
 
 }

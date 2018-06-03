@@ -1,14 +1,9 @@
-CREATE TABLE `level_plus_one`.`game_info` (
-  `user_id` INT UNSIGNED NOT NULL,
-  `game_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `game` VARCHAR(50) NOT NULL,
-  `competing_since` VARCHAR(45) NULL,
+CREATE TABLE `game_info` (
+  `user_id` int(10) unsigned NOT NULL,
+  `game_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `game` varchar(50) NOT NULL,
+  `competing_since` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`game_id`),
-  CONSTRAINT `game_info_user_id`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `level_plus_one`.`user` (`user_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
-
-
-ALTER TABLE `level_plus_one`.game_info ADD UNIQUE `unique_user_id_role`(`user_id`, `game`);
+  UNIQUE KEY `unique_user_id_role` (`user_id`,`game`),
+  CONSTRAINT `game_info_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -22,7 +22,7 @@ public class User implements Serializable {
 
 	private String email;
 
-	private byte enabled;
+	private boolean enabled;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="last_login")
@@ -75,11 +75,11 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public byte getEnabled() {
+	public boolean getEnabled() {
 		return this.enabled;
 	}
 
-	public void setEnabled(byte enabled) {
+	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 

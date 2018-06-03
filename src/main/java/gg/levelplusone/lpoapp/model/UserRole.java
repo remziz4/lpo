@@ -14,8 +14,10 @@ import javax.persistence.*;
 public class UserRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private UserRolePK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="user_role_id")
+	private int userRoleId;
 
 	private String role;
 
@@ -27,12 +29,12 @@ public class UserRole implements Serializable {
 	public UserRole() {
 	}
 
-	public UserRolePK getId() {
-		return this.id;
+	public int getUserRoleId() {
+		return this.userRoleId;
 	}
 
-	public void setId(UserRolePK id) {
-		this.id = id;
+	public void setUserRoleId(int userRoleId) {
+		this.userRoleId = userRoleId;
 	}
 
 	public String getRole() {

@@ -1,13 +1,11 @@
-CREATE TABLE `level_plus_one`.`user` (
-  `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(50) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(80) NOT NULL,
-  `enabled` TINYINT(1) NOT NULL,
-  `last_login` DATETIME NULL,
-  `registration_date` DATETIME NULL,
+  CREATE TABLE `user` (
+  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `registration_date` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC));
-  
-ALTER TABLE level_plus_one.user
-  AUTO_INCREMENT=100;
+  UNIQUE KEY `username_UNIQUE` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;

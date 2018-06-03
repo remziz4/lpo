@@ -15,8 +15,10 @@ import java.util.List;
 public class GameInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private GameInfoPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="game_id")
+	private int gameId;
 
 	@Column(name="competing_since")
 	private String competingSince;
@@ -35,12 +37,12 @@ public class GameInfo implements Serializable {
 	public GameInfo() {
 	}
 
-	public GameInfoPK getId() {
-		return this.id;
+	public int getGameId() {
+		return this.gameId;
 	}
 
-	public void setId(GameInfoPK id) {
-		this.id = id;
+	public void setGameId(int gameId) {
+		this.gameId = gameId;
 	}
 
 	public String getCompetingSince() {
