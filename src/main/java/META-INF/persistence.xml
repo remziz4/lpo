@@ -3,9 +3,9 @@
 	<persistence-unit name="lpoapp">
 		<class>gg.levelplusone.lpoapp.model.GameInfo</class>
 		<class>gg.levelplusone.lpoapp.model.Main</class>
-		<class>gg.levelplusone.lpoapp.model.ProfileInfo</class>
 		<class>gg.levelplusone.lpoapp.model.Session</class>
 		<class>gg.levelplusone.lpoapp.model.User</class>
+		<class>gg.levelplusone.lpoapp.model.UserProfile</class>
 		<class>gg.levelplusone.lpoapp.model.UserRole</class>
 	</persistence-unit>
 </persistence>

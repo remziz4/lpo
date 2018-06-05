@@ -8,12 +8,14 @@ $(function(){
 
 function register(){
 	$(".alert").html("").hide();
-	var formData= $('form').serialize();
+	var formData = JSON.stringify($("form").serializeJSON());
+	console.log(formData)
 
 	var csrfToken = $("#csrf").val();
 	console.log(csrfToken)
 	$.ajax({
 		type: "POST",
+		contentType: "application/json",
 		url: "/auth/registerUser",
 		headers: {'X-XSRF-TOKEN': csrfToken},
 		data: formData,
@@ -22,16 +24,6 @@ function register(){
 		}
 	});
 	
-	/*$.post("/auth/registerUser",formData ,function(data){
-		if(data.message == "success"){
-			//window.location.href = serverContext +"/successRegister.html";
-			console.log("Success");
-		}
-	})
-	.fail(function(data) {
-		console.log("Fail")
-	});
-	*/
 }
 
 function getTest(){

@@ -2,6 +2,7 @@ package gg.levelplusone.lpoapp.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,19 +17,23 @@ import gg.levelplusone.lpoapp.vo.AuthorizationUserVO;
 @RestController()
 @RequestMapping("/auth")
 public class AuthorizationController {
+	
+	@Autowired
+	RegisterUserService registrationService;
 
 
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
 	public ResponseEntity<String> registerUserAccount(@RequestBody @Valid AuthorizationUserVO authUser) {
 		System.out.println("Entered AuthorizationController.registerUserAccount");
 		System.out.println(authUser);
-		User registered = RegisterUserService.registerUser(authUser);
+		
+		User registered = registrationService.registerUser(authUser);
 		
 		if(registered == null) {
-			return new ResponseEntity<String>("success", HttpStatus.OK);
+			return new ResponseEntity<String>("failed", HttpStatus.valueOf(500));
 		}
 		
-		return new ResponseEntity<String>("success", HttpStatus.OK);
+		return new ResponseEntity<String>("Account created for " + registered.getUsername(), HttpStatus.OK);
 		
 	}
 	

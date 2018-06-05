@@ -1,4 +1,4 @@
-CREATE TABLE `main` (
+CREATE TABLE level_plus_one.`main` (
   `main_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `game_id` int(10) unsigned NOT NULL,
   `character` varchar(45) NOT NULL,

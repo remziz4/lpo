@@ -2,6 +2,11 @@ package gg.levelplusone.lpoapp.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.util.Date;
 
 
@@ -10,20 +15,27 @@ import java.util.Date;
  * 
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @NamedQuery(name="Session.findAll", query="SELECT s FROM Session s")
 public class Session implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="session_id")
 	private int sessionId;
 
+	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="creation_date")
 	private Date creationDate;
 
 	private int duration;
+
+	@LastModifiedDate
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="last_modified_date")
+	private Date lastModifiedDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="start_date")
@@ -64,6 +76,14 @@ public class Session implements Serializable {
 
 	public void setDuration(int duration) {
 		this.duration = duration;
+	}
+
+	public Date getLastModifiedDate() {
+		return this.lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
 
 	public Date getStartDate() {

@@ -2,6 +2,11 @@ package gg.levelplusone.lpoapp.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,12 +16,13 @@ import java.util.List;
  * 
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_id")
 	private int userId;
 
@@ -28,8 +34,14 @@ public class User implements Serializable {
 	@Column(name="last_login")
 	private Date lastLogin;
 
+	@LastModifiedDate
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="last_modified_date")
+	private Date lastModifiedDate;
+
 	private String password;
 
+	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="registration_date")
 	private Date registrationDate;
@@ -40,10 +52,6 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private List<GameInfo> gameInfos;
 
-	//bi-directional one-to-one association to ProfileInfo
-	@OneToOne(mappedBy="user")
-	private ProfileInfo profileInfo;
-
 	//bi-directional many-to-one association to Session
 	@OneToMany(mappedBy="user1")
 	private List<Session> sessions1;
@@ -52,8 +60,12 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user2")
 	private List<Session> sessions2;
 
+	//bi-directional one-to-one association to UserProfile
+	@OneToOne(mappedBy="user", cascade = CascadeType.PERSIST)
+	private UserProfile userProfile;
+
 	//bi-directional many-to-one association to UserRole
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade = CascadeType.PERSIST)
 	private List<UserRole> userRoles;
 
 	public User() {
@@ -89,6 +101,14 @@ public class User implements Serializable {
 
 	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
+	}
+
+	public Date getLastModifiedDate() {
+		return this.lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
 
 	public String getPassword() {
@@ -137,14 +157,6 @@ public class User implements Serializable {
 		return gameInfo;
 	}
 
-	public ProfileInfo getProfileInfo() {
-		return this.profileInfo;
-	}
-
-	public void setProfileInfo(ProfileInfo profileInfo) {
-		this.profileInfo = profileInfo;
-	}
-
 	public List<Session> getSessions1() {
 		return this.sessions1;
 	}
@@ -187,6 +199,14 @@ public class User implements Serializable {
 		sessions2.setUser2(null);
 
 		return sessions2;
+	}
+
+	public UserProfile getUserProfile() {
+		return this.userProfile;
+	}
+
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
 	}
 
 	public List<UserRole> getUserRoles() {

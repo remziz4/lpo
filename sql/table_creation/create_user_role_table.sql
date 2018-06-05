@@ -1,4 +1,4 @@
-CREATE TABLE `user_role` (
+CREATE TABLE level_plus_one.`user_role` (
   `user_id` int(10) unsigned NOT NULL,
   `user_role_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `role` varchar(20) NOT NULL,
