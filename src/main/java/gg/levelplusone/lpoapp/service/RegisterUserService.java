@@ -9,6 +9,12 @@ public class RegisterUserService {
 		
 		//TODO Implement Registration Logic
 		
-		return null;
+		if (authUser != null && authUser.getUsername() != null) {
+			User user = new User();
+			user.setUsername(authUser.getUsername());
+			return user;
+		} else {
+			return null;
+		}
 	}
 }

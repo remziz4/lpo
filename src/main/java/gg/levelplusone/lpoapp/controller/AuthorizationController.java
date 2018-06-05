@@ -19,7 +19,7 @@ public class AuthorizationController {
 
 
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
-	public ResponseEntity<String> registerUserAccount(@RequestBody AuthorizationUserVO authUser) {
+	public ResponseEntity<String> registerUserAccount(@RequestBody @Valid AuthorizationUserVO authUser) {
 		System.out.println("Entered AuthorizationController.registerUserAccount");
 		System.out.println(authUser);
 		User registered = RegisterUserService.registerUser(authUser);
