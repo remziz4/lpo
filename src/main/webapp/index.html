@@ -1,6 +1,6 @@
 <html>
 <head>
-<title th:text="#{label.form.title}">form</title>
+<title>Form</title>
 </head>
 <body>
 	<form action="/" method="POST" enctype="utf8">
@@ -20,10 +20,10 @@
 		Password: <input name="password" value="" type="password" /> <span id="passwordError" style="display: none"></span>
 		Matching Password: <input name="matchingPassword" value="" type="password" /> 
 		
-		<input type="hidden" id="csrf" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<!--input type="hidden" id="csrf" name="${_csrf.parameterName}" value="${_csrf.token}" /-->
 		
 		<span id="globalError" style="display: none"></span>
-		<a href="#"onclick="register()" th:text="#{label.form.submit}">Submit</a>
+		<a href="#"onclick="register()">Submit</a>
 	</form>
 
 	<button type="button" onclick="getTest()">Get Test</button>
