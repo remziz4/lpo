@@ -5,4 +5,4 @@ CREATE TABLE level_plus_one.`main` (
   PRIMARY KEY (`main_id`),
   UNIQUE KEY `unique_game_id_character` (`game_id`,`character`),
   CONSTRAINT `main_game_id` FOREIGN KEY (`game_id`) REFERENCES `game_info` (`game_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -8,4 +8,4 @@ CREATE TABLE level_plus_one.`user_profile` (
   `discord` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `user_profile_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4

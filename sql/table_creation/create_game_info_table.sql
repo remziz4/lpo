@@ -6,4 +6,4 @@ CREATE TABLE level_plus_one.`game_info` (
   PRIMARY KEY (`game_id`),
   UNIQUE KEY `unique_user_id_role` (`user_id`,`game`),
   CONSTRAINT `game_info_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
