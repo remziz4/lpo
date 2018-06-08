@@ -2,6 +2,8 @@ package gg.levelplusone.lpoapp.service;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,20 +18,25 @@ import gg.levelplusone.lpoapp.vo.AuthorizationUserVO;
 @Transactional
 public class RegisterUserService {
 	
+	Logger logger = LoggerFactory.getLogger(RegisterUserService.class);
+	
 	@Autowired
 	UserRepository userRepository;
 
 	public User registerUser (AuthorizationUserVO authUser) {
+		logger.debug("Entering RegisterUserService...");
 		
 		
 		User newUser = mapUserVOtoPO(authUser);
 		
+		logger.debug("Exiting RegisterUserService...");
 		return userRepository.save(newUser);
 		
 		
 	}
 
 	private User mapUserVOtoPO(AuthorizationUserVO authUser) {
+		logger.debug("Entering RegisterUserService.mapUserVOtoPO()");
 		//General User Info
 		User newUser = new User();
 		newUser.setEnabled(true);

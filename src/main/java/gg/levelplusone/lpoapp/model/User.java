@@ -68,6 +68,22 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user", cascade = CascadeType.PERSIST)
 	private List<UserRole> userRoles;
 
+	//bi-directional many-to-one association to CoachGameInfo
+	@OneToMany(mappedBy="user")
+	private List<CoachGameInfo> coachGameInfos;
+
+	//bi-directional one-to-one association to CoachRating
+	@OneToOne(mappedBy="user1")
+	private CoachRating coachRating;
+
+	//bi-directional many-to-one association to CoachRating
+	@OneToMany(mappedBy="user2")
+	private List<CoachRating> coachRatings;
+
+	//bi-directional one-to-one association to UserCoachingInfo
+	@OneToOne(mappedBy="user")
+	private UserCoachingInfo userCoachingInfo;
+
 	public User() {
 	}
 
@@ -229,6 +245,66 @@ public class User implements Serializable {
 		userRole.setUser(null);
 
 		return userRole;
+	}
+
+	public List<CoachGameInfo> getCoachGameInfos() {
+		return this.coachGameInfos;
+	}
+
+	public void setCoachGameInfos(List<CoachGameInfo> coachGameInfos) {
+		this.coachGameInfos = coachGameInfos;
+	}
+
+	public CoachGameInfo addCoachGameInfo(CoachGameInfo coachGameInfo) {
+		getCoachGameInfos().add(coachGameInfo);
+		coachGameInfo.setUser(this);
+
+		return coachGameInfo;
+	}
+
+	public CoachGameInfo removeCoachGameInfo(CoachGameInfo coachGameInfo) {
+		getCoachGameInfos().remove(coachGameInfo);
+		coachGameInfo.setUser(null);
+
+		return coachGameInfo;
+	}
+
+	public CoachRating getCoachRating() {
+		return this.coachRating;
+	}
+
+	public void setCoachRating(CoachRating coachRating) {
+		this.coachRating = coachRating;
+	}
+
+	public List<CoachRating> getCoachRatings() {
+		return this.coachRatings;
+	}
+
+	public void setCoachRatings(List<CoachRating> coachRatings) {
+		this.coachRatings = coachRatings;
+	}
+
+	public CoachRating addCoachRating(CoachRating coachRating) {
+		getCoachRatings().add(coachRating);
+		coachRating.setUser2(this);
+
+		return coachRating;
+	}
+
+	public CoachRating removeCoachRating(CoachRating coachRating) {
+		getCoachRatings().remove(coachRating);
+		coachRating.setUser2(null);
+
+		return coachRating;
+	}
+
+	public UserCoachingInfo getUserCoachingInfo() {
+		return this.userCoachingInfo;
+	}
+
+	public void setUserCoachingInfo(UserCoachingInfo userCoachingInfo) {
+		this.userCoachingInfo = userCoachingInfo;
 	}
 
 }

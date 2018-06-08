@@ -7,5 +7,9 @@
 		<class>gg.levelplusone.lpoapp.model.User</class>
 		<class>gg.levelplusone.lpoapp.model.UserProfile</class>
 		<class>gg.levelplusone.lpoapp.model.UserRole</class>
+		<class>gg.levelplusone.lpoapp.model.CoachGameInfo</class>
+		<class>gg.levelplusone.lpoapp.model.CoachRating</class>
+		<class>gg.levelplusone.lpoapp.model.Specialty</class>
+		<class>gg.levelplusone.lpoapp.model.UserCoachingInfo</class>
 	</persistence-unit>
 </persistence>
